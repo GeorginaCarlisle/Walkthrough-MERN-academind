@@ -7,19 +7,22 @@ import {
 
 import Users from "./users/pages/Users";
 import NewPlace from "./places/pages/NewPlace";
+import MainNavigation from './shared/components/Navigation/MainNavigation';
 
 const App = () => {
   return (
     <Router>
-      <Routes>
-        <Route path="/" element={<Users/>} />
-        <Route path="/places/new" element={<NewPlace/>} />
-        {/* the /* path will pick up any urls for which there is no matching path */}
-        <Route path="/*" element={<Users/>} />
-        {/* A different option: <Route path="/*" element={<Navigate to="/" replace />} /> */}
-        {/* 404 page is probably a good idea here */}
-
-      </Routes>
+      <MainNavigation />
+      <main>
+        <Routes>
+          <Route path="/" element={<Users/>} />
+          <Route path="/places/new" element={<NewPlace/>} />
+          {/* the /* path will pick up any urls for which there is no matching path */}
+          <Route path="/*" element={<Users/>} />
+          {/* A different option: <Route path="/*" element={<Navigate to="/" replace />} /> */}
+          {/* 404 page is probably a good idea here */}
+        </Routes>
+      </main>
     </Router>
   );
 };
