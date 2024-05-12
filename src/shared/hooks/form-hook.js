@@ -6,6 +6,10 @@ const formReducer = (state, action) => {
       let formIsValid = true;
       // Looping through all inputs held in state - see useReducer statement further down
       for (const inputId in state.inputs) {
+        // Check if the input being looped through is falsy and if so end this loop and move on to the next
+        if (!state.inputs[inputId]) {
+          continue;
+        }
         // Check if the input being looped through is the same as the input that has been changed and has triggered this function
         if (inputId === action.inputId) {
           //update formisvalid status based on whether the new input is valid AND nothing has changed form is valid to false

@@ -10,6 +10,7 @@ import NewPlace from "./places/pages/NewPlace";
 import UserPlaces from './places/pages/UserPlaces';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import UpdatePlace from './places/pages/UpdatePlace';
+import Auth from './users/pages/Auth';
 
 const App = () => {
   return (
@@ -21,6 +22,7 @@ const App = () => {
           <Route path="/places/new" element={<NewPlace/>} />
           <Route path="/:userId/places" element={<UserPlaces/>}></Route>
           <Route path="/places/:placeId" element={<UpdatePlace />}></Route>
+          <Route path="/auth" element={<Auth />}></Route>
           {/* the /* path will pick up any urls for which there is no matching path */}
           <Route path="/*" element={<Users/>} />
           {/* A different option: <Route path="/*" element={<Navigate to="/" replace />} /> */}
