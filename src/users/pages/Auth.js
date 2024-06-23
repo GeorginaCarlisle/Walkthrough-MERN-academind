@@ -5,6 +5,7 @@ import Card from '../../shared/components/UIElements/Card';
 import Button from '../../shared/components/FormElements/Button';
 import ErrorModal from '../../shared/components/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/components/UIElements/LoadingSpinner';
+import ImageUpload from '../../shared/components/FormElements/ImageUpload';
 
 import { VALIDATOR_REQUIRE, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from '../../shared/components/util/validators';
 import { useForm } from '../../shared/hooks/form-hook';
@@ -33,13 +34,18 @@ const Auth = () => {
     if (!isLogin) {
       setFormData({
         ...formState.inputs,
-        name: undefined
+        name: undefined,
+        image: undefined
       }, formState.inputs.email.isValid && formState.inputs.password.isValid);
     } else {
       setFormData({
         ...formState.inputs,
         name: {
           value: '',
+          isValid: false
+        },
+        image: {
+          value: null,
           isValid: false
         }
       }, false);
@@ -49,7 +55,7 @@ const Auth = () => {
 
   const loginSubmitHandler = async event => {
     event.preventDefault();
-
+    console.log(formState.inputs);
     if (isLogin) {
       try {
         const responseData = await sendRequest(
@@ -103,6 +109,7 @@ const Auth = () => {
               onInput={inputHandler}
             />
           )}
+          {!isLogin && <ImageUpload id="image" center onInput={inputHandler}/>}
           <Input
             id="email"
             element='input'
